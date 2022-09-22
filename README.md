@@ -2,3 +2,6 @@
 
 Simple book API was the first api endpoint I was introduced to during my training
 I performed some validations on the endpoints
+
+# Link to the collection
+https://www.getpostman.com/collections/44e9fd9512df4205b51f
