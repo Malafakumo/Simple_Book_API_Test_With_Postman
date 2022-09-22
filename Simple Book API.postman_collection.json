@@ -1,0 +1,1156 @@
+{
+	"info": {
+		"_postman_id": "6f8f8544-20e0-445e-9d92-f4a75395539c",
+		"name": "Simple Book API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20836391"
+	},
+	"item": [
+		{
+			"name": "Get status",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"pm.response.to.have.status(200);\r",
+							"})\r",
+							"\r",
+							"pm.test(\"Verify status is OK\", function () {\r",
+							"    pm.expect(jsonData.status).to.eql(\"OK\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/status",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"status"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get status",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/status",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"status"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 02 Sep 2022 10:38:03 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "15"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"f-v/Y1JusChTxrQUzPtNAKycooOTA\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"OK\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Lists of books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"available\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/books",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"books"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "non-fiction",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Lists of books",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/books",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "non-fiction",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 02 Sep 2022 10:44:52 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "417"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"1a1-MfqhfTYtZO2sguD1mJq8Vf41WjU\""
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"The Russian\",\n        \"type\": \"fiction\",\n        \"available\": true\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Just as I Am\",\n        \"type\": \"non-fiction\",\n        \"available\": false\n    },\n    {\n        \"id\": 3,\n        \"name\": \"The Vanishing Half\",\n        \"type\": \"fiction\",\n        \"available\": true\n    },\n    {\n        \"id\": 4,\n        \"name\": \"The Midnight Library\",\n        \"type\": \"fiction\",\n        \"available\": true\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Untamed\",\n        \"type\": \"non-fiction\",\n        \"available\": true\n    },\n    {\n        \"id\": 6,\n        \"name\": \"Viscount Who Loved Me\",\n        \"type\": \"fiction\",\n        \"available\": true\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "List of fiction books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"available\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"fiction\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/books?type=fiction",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"books"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "fiction"
+						},
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "List of fiction books",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/books?type=fiction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "fiction"
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 02 Sep 2022 10:48:43 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "283"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"11b-o9uRXcrIVMM6g2P09v+quQbTy2s\""
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"The Russian\",\n        \"type\": \"fiction\",\n        \"available\": true\n    },\n    {\n        \"id\": 3,\n        \"name\": \"The Vanishing Half\",\n        \"type\": \"fiction\",\n        \"available\": true\n    },\n    {\n        \"id\": 4,\n        \"name\": \"The Midnight Library\",\n        \"type\": \"fiction\",\n        \"available\": true\n    },\n    {\n        \"id\": 6,\n        \"name\": \"Viscount Who Loved Me\",\n        \"type\": \"fiction\",\n        \"available\": true\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "List of non-fiction books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"name\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"available\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"non-fiction\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/books?type=non-fiction",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"books"
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "non-fiction"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "List of non-fiction books",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/books?type=non-fiction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "non-fiction"
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 02 Sep 2022 10:56:47 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "135"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"87-fbXCfgu0GEMnqcRoXq5fuhhKazw\""
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 2,\n        \"name\": \"Just as I Am\",\n        \"type\": \"non-fiction\",\n        \"available\": false\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Untamed\",\n        \"type\": \"non-fiction\",\n        \"available\": true\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get a single book with valid id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    var jsonData = pm.response.json();\r",
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"verify bookid is 3\", function () {\r",
+							"    pm.expect(jsonData.id).to.eql(3);\r",
+							"});\r",
+							"pm.test(\"verify name is The Vanishing Half\", function() {\r",
+							"    pm.expect(jsonData.name).to.eql(\"The Vanishing Half\");\r",
+							"});\r",
+							"pm.test(\"verify author is Brit Bennett\", function () {\r",
+							"    pm.expect(jsonData.author).to.eql(\"Brit Bennett\");\r",
+							"});\r",
+							"pm.test(\"verify type is fiction\", function () {\r",
+							"    pm.expect(jsonData.type).to.eql(\"fiction\");\r",
+							"});\r",
+							"pm.test(\"verify price is 16.2\", function () {\r",
+							"    pm.expect(jsonData.price).to.eql(16.2);\r",
+							"});\r",
+							"pm.test(\"verify current-stock is 987\", function () {\r",
+							"    pm.expect(jsonData.current-stock).to.eql(987);\r",
+							"});\r",
+							"pm.test(\"verify available is true\", function () {\r",
+							"    pm.expect(jsonData.available).to.eql(true);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/books/:bookId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"books",
+						":bookId"
+					],
+					"variable": [
+						{
+							"key": "bookId",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get a single book with valid id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/books/:bookId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"books",
+								":bookId"
+							],
+							"variable": [
+								{
+									"key": "bookId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 02 Sep 2022 11:10:05 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "127"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"7f-XtuUUVAdwPfEZJfmMqGJV9px5xI\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 3,\n    \"name\": \"The Vanishing Half\",\n    \"author\": \"Brit Bennett\",\n    \"type\": \"fiction\",\n    \"price\": 16.2,\n    \"current-stock\": 987,\n    \"available\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "Get a single book with invalid id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 404 OK\", function () {\r",
+							"pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"verify error is No book with id 7\", function () {\r",
+							"    pm.expect(jsonData.error).to.eql(\"No book with id 7\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/books/:bookId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"books",
+						":bookId"
+					],
+					"variable": [
+						{
+							"key": "bookId",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get a single book with invalid id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/books/:bookId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"books",
+								":bookId"
+							],
+							"variable": [
+								{
+									"key": "bookId",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 02 Sep 2022 11:20:13 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "29"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"1d-ueMPigXDwoDFvB9SkJfgIZedCsw\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"No book with id 7\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get a single book with empty id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 404 OK\", function () {\r",
+							"pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"verify error is No book with id NaN\", function () {\r",
+							"    pm.expect(jsonData.error).to.eql(\"No book with id NaN\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/books/:bookId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"books",
+						":bookId"
+					],
+					"variable": [
+						{
+							"key": "bookId",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get a single book with empty id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/books/:bookId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"books",
+								":bookId"
+							],
+							"variable": [
+								{
+									"key": "bookId",
+									"value": ""
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 02 Sep 2022 11:22:32 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "31"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"1f-lp2DUvyX5wMtIbcyc88kA0BbwnM\""
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"No book with id NaN\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Order a book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201 OK\", function () {\r",
+							"pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"bookId\": 6,\r\n  \"customerName\": \"Chait {{$randomLastName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/orders",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"orders"
+					],
+					"query": [
+						{
+							"key": "quantity",
+							"value": "5",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all book orders",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"bookId\": 1,\r\n  \"customerName\": \"{{$randomFullName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/orders",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get an order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200 OK\", function () {\r",
+							"pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"bookId\": 1,\r\n  \"customerName\": \"{{$randomFullName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/orders/:orderId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"orders",
+						":orderId"
+					],
+					"variable": [
+						{
+							"key": "orderId",
+							"value": "{{orderId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204 OK\", function () {\r",
+							"pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"bookId\": 1,\r\n  \"customerName\": \"{{$randomFullName}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/orders/:orderId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"orders",
+						":orderId"
+					],
+					"variable": [
+						{
+							"key": "orderId",
+							"value": "{{orderId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update an order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n  \"customerName\": \"Jerry King\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/orders/:orderId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"orders",
+						":orderId"
+					],
+					"variable": [
+						{
+							"key": "orderId",
+							"value": "3MCyCDAQSTEbzfrggdnV6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order a book that is not available",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404 Not Found\", function () {\r",
+							"pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"bookId\": 2,\r\n  \"customerName\": \"Aya\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/orders",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create API client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"clientName\": \"Ayaere\",\r\n   \"clientEmail\": \"ayaere09@yopmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}//api-clients",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"",
+						"api-clients"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://simple-books-api.glitch.me"
+		},
+		{
+			"key": "accessToken",
+			"value": "---",
+			"type": "string"
+		}
+	]
+}
